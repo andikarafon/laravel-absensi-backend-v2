@@ -14,12 +14,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-         User::factory(10)->create();
+        // create 10 user secara dinamis
+        User::factory(10)->create();
 
+        //create user static
         User::factory()->create([
-            'name' => 'Andika Rafon Sinuhaji',
+            'name' => 'Ravon Admin',
             'email' => 'andika@wonokoyo.co.id',
-            'password' => Hash::make('230557')
+            'password' =>Hash::make('230557'),
+        ]);
+
+        //data dummy for company
+        \App\Models\Company::create([
+            'name'      => 'PT. POWERMETAL',
+            'email'     => 'powermetal@gmail.com',
+            'address'   => 'Jalan Taman Bungkul 1-7, Surabaya',
+            'latitude'  => '-7.747033',
+            'longitude' => '110.355398',
+            'radius_km' => '0.5',
+            'time_in'   => '08:00',
+            'time_out'  => '17:00',
+        ]);
+
+        $this->call([
+            // AttendanceSeeder::class,
+            // PermissionSeeder::class,
         ]);
     }
 }
